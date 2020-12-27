@@ -1,0 +1,10 @@
+{% extends 'main/base.html'  %}
+
+
+{% block content %}
+<form method="post"  enctype="multipart/form-data" action="">
+    <input type="file" name="document">
+    {% csrf_token %}
+    <button type="submit">Загрузить</button>
+</form>
+{% endblock %}
