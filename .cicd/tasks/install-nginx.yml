@@ -9,6 +9,11 @@
   become: true
   become_user: root
 
+- name: NGINX | add key
+  apt_key:
+    url: "https://nginx.org/keys/nginx_signing.key"
+    state: present
+
 - name: NGINX | update apt cache
   apt:
     update_cache: true
@@ -18,7 +23,7 @@
 
 - name: NGINX | install nginx
   apt:
-    name: nginx-full
+    name: nginx
     state: present
   become: true
   become_user: root
