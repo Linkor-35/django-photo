@@ -1,4 +1,4 @@
-upstream django {
+upstream {{ run_site_nginx_upstream_name }} {
     server {{ run_site_host }}:{{ run_site_port }};
 }
 
