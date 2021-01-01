@@ -2,11 +2,23 @@ upstream {{ run_site_nginx_upstream_name }} {
     server {{ run_site_host }}:{{ run_site_port }};
 }
 
+
 server {
     listen 80;
-{% if run_site_nginx_ssl %}
+    server_name troyka-foto.ru www.troyka-foto.ru;
+
+    if ($host = www.troyka-foto.ru) {
+        return 301 https://$host$request_uri;
+    }
+
+    if ($host = troyka-foto.ru) {
+        return 301 https://$host$request_uri;
+    }
+    return 404;
+}
+
+server {
     listen 443 ssl http2;
-{% endif %}
 
 
     # CHANGE THIS TO YOUR SERVER'S NAME
@@ -16,11 +28,7 @@ server {
     access_log {{ run_site_nginx_access_log }};
     error_log {{ run_site_nginx_error_log }};
 
-
-    # SSL enable manualy by Let's Encrypt certbot
-{% if run_site_nginx_ssl %}
     include ssl.conf;
-{% endif %}
 
     client_max_body_size 25m;
 
