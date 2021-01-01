@@ -11,6 +11,8 @@
   template:
     src: "gunicorn.py.j2"
     dest: "{{ run_site_gunicorn_dest }}"
+  become: true
+  become_user: "{{ app_user_name }}"
 
 - name: "RUN | generate systemd unit file"
   template:

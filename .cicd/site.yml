@@ -37,4 +37,5 @@
       include_tasks: ./tasks/run.yml
 
     - name: LE
-      include_tasks: ./tasks/letsencrypt.yml
+      include_role:
+        name: geerlingguy.certbot

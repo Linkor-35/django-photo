@@ -46,3 +46,15 @@
   become: true
   become_user: root
   notify: reload nginx
+
+- name: NGINX | generate site ssl
+  template:
+    src: "ssl.conf.j2"
+    dest: "/etc/nginx/ssl.conf"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  become_user: root
+  notify: reload nginx
+  when: run_site_nginx_ssl 

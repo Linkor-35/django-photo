@@ -4,6 +4,10 @@ upstream {{ run_site_nginx_upstream_name }} {
 
 server {
     listen 80;
+{% if run_site_nginx_ssl %}
+    listen 443 ssl http2;
+{% endif %}
+
 
     # CHANGE THIS TO YOUR SERVER'S NAME
     server_name {{ run_site_domain }} www.{{ run_site_domain }};
@@ -14,6 +18,9 @@ server {
 
 
     # SSL enable manualy by Let's Encrypt certbot
+{% if run_site_nginx_ssl %}
+    include ssl.conf;
+{% endif %}
 
     client_max_body_size 25m;
 
