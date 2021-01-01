@@ -24,7 +24,7 @@
 
     deploy_src_repo_url: "https://github.com/Linkor-35/django-photo.git"
     deploy_src_repo_dest: "/home/{{ app_user_name }}/app"
-    deploy_repository_branche_name: "master"
+    deploy_repository_branche_name: "cicd"
 
 
   tasks:
@@ -34,5 +34,5 @@
     - name: Prepare
       include_tasks: ./tasks/prepare.yml
 
-    - name: Deploy
-      include_tasks: ./tasks/deploy.yml
+    - name: Clone
+      include_tasks: ./tasks/clone.yml
