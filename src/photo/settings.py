@@ -1,6 +1,5 @@
 
 from pathlib import Path
-from .SECRET import key
 import os
 
 

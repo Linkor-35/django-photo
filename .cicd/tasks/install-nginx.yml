@@ -44,5 +44,5 @@
     group: root
     mode: 0644
   become: true
-  become_user: true
+  become_user: root
   notify: reload nginx
