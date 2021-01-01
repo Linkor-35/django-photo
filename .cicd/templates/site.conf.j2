@@ -22,7 +22,7 @@ server {
     }
 
     location / {
-        proxy_pass http://django;
+        proxy_pass http://{{ run_site_nginx_upstream_name }};
         proxy_set_header X-Forwarded-Host $http_host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-Proto $scheme;
