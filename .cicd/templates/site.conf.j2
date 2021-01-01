@@ -1,0 +1,25 @@
+upstream django {
+    server {{ run_site_host }}:{{ run_site_port }};
+}
+
+server {
+    listen 80;
+
+    # CHANGE THIS TO YOUR SERVER'S NAME
+    server_name {{ run_site_domain }};
+
+    # SSL enable by Let's Encrypt certbot
+
+    client_max_body_size 25m;
+
+    location /static/ {
+        alias {{ deploy_src_work_dir }}/static/;
+    }
+
+    location / {
+        proxy_pass http://django;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}

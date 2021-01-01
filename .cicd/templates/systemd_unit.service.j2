@@ -1,0 +1,23 @@
+[Unit]
+Description=Django WSGI Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+User={{ app_user_name }}
+Group={{ app_user_group }}
+PIDFile={{ run_site_pid }}
+Environment=SECRET_KEY={{ run_site_secret_key }}
+Environment=ALLOWED_HOSTS={{ run_site_allowed_hosts }}
+WorkingDirectory={{ deploy_src_work_dir }}
+
+ExecStart={{ deploy_src_work_dir }}/venv/bin/gunicorn --pid {{ run_site_pid }} --pythonpath {{ deploy_src_work_dir }} --config {{ run_site_gunicorn_dest }} photo.wsgi
+
+Restart=on-failure
+RestartSec=30
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

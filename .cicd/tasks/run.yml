@@ -1,6 +1,25 @@
 ---
 - name: "RUN | install requirements in virtual environment"
   pip:
-     requirements: "{{ deploy_src_repo_dest }}/requirements.txt"
-     virtualenv: "{{ deploy_src_repo_dest }}/venv"
-     virtualenv_command: "{{ ansible_python_interpreter }} -m venv"
+    requirements: "{{ deploy_src_repo_dest }}/requirements.txt"
+    virtualenv: "{{ deploy_src_repo_dest }}/venv"
+    virtualenv_command: "{{ ansible_python_interpreter }} -m venv"
+  become: true
+  become_user: "{{ app_user_name }}"
+
+- name: "RUN | generate gunicorn config"
+  templae:
+    src: "gunicorn.py.j2"
+    dest: "{{ run_site_gunicorn_dest }}"
+
+- name: "RUN | generate systemd unit file"
+  template:
+    src: "systemd_unit.service.j2"
+    dest: "{{ run_site_systemd_unit }}"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  become_user: root
+  notify: daemon reload
+  
