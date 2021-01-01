@@ -24,6 +24,10 @@
 
 
   tasks:
+    - name: LE
+      include_role:
+        name: geerlingguy.certbot
+
     - name: NGINX
       include_tasks: ./tasks/install-nginx.yml
 
@@ -36,6 +40,5 @@
     - name: RUN
       include_tasks: ./tasks/run.yml
 
-    - name: LE
-      include_role:
-        name: geerlingguy.certbot
+    - name: TEST
+      include_tasks: ./tasks/tests.yml

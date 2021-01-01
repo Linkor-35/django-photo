@@ -31,3 +31,34 @@
     state: restarted
   become: true
   become_user: root
+
+- name: NGINX | generate site config
+  template:
+    src: "site.conf.j2"
+    dest: "{{ run_site_nginx_default }}"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  become_user: root
+  notify: reload nginx
+
+- name: NGINX | generate site ssl
+  template:
+    src: "ssl.conf.j2"
+    dest: "/etc/nginx/ssl.conf"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  become_user: root
+  notify: reload nginx
+  when: run_site_nginx_ssl
+
+- name: NGINX | enable nginx service
+  systemd:
+    name: "nginx.service"
+    state: restarted
+    enabled: true
+  become: true
+  become_user: root

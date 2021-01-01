@@ -1,0 +1,13 @@
+---
+- name: TEST | curl https
+  uri:
+    url: "https://{{ run_site_domain }}/"
+    status_code: 200
+    method: GET
+  register: test
+  delegate_to: localhost
+  become: false
+
+- name: TEST | debug
+  debug:
+    msg: "{{ test.url }} return {{ test.status }}"
