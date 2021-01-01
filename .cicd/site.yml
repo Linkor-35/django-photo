@@ -24,7 +24,21 @@
 
     deploy_src_repo_url: "https://github.com/Linkor-35/django-photo.git"
     deploy_src_repo_dest: "/home/{{ app_user_name }}/app"
+    deploy_src_work_dir: "{{ deploy_src_repo_dest }}/src"
     deploy_repository_branche_name: "cicd"
+
+    run_site_domain: "troyka-foto.ru"
+    run_site_host: "127.0.0.1"
+    run_site_port: 8000
+    run_site_gunicorn_dest: "{{ deploy_src_work_dir }}/gunicorn.py"
+    run_site_pid: /var/tmp/troyka.pid
+    run_site_nginx_default: "/etc/nginx/conf.d/default.conf"
+    run_site_systemd_unit: "/etc/systemd/system/{{ run_site_domain }}.service"
+    run_site_secret_key: "$up3RseCR37"
+    run_site_allowed_hosts:
+      - "127.0.0.1"
+      - "{{ run_site_host }}:{{ run_site_port }}"
+      - "{{ run_site_domain }}"
 
 
   tasks:

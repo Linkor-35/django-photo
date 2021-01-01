@@ -1,0 +1,11 @@
+---
+- name: reload nginx
+  systemd:
+    name: nginx.service
+    state: reloaded
+  become: true
+  become_user: root
+
+- name: daemon reload
+  systemd:
+    daemon_reload: true
