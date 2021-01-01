@@ -11,3 +11,18 @@
 - name: TEST | debug
   debug:
     msg: "{{ test.url }} return {{ test.status }}"
+
+- name: TEST | Alert
+  telegram:
+    token: "{{ telegram_token }}"
+    chat_id: "{{ telegram_chat_id }}"
+    msg_format: html
+    msg: |
+      Deploy status: ✅
+      Project: \`{{ run_site_domain }}\`
+      URL: {{ test.url }}
+      Branch: {{ deploy_repository_branche_name }}
+      Status code: \`{{ test.status }}\`
+
+  delegate_to: localhost
+  become: false

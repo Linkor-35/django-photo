@@ -2,17 +2,25 @@ upstream {{ run_site_nginx_upstream_name }} {
     server {{ run_site_host }}:{{ run_site_port }};
 }
 
-
 server {
     listen 80;
-
     server_name {{ run_site_domain }} www.{{ run_site_domain }};
+    return 301 https://{{ run_site_domain }}$request_uri;
+}
+
+
+server {
+    listen 443 ssl http2;
+
+    server_name {{ run_site_domain }};
 
     # Logging configuration
     access_log {{ run_site_nginx_access_log }};
     error_log {{ run_site_nginx_error_log }};
 
     client_max_body_size 25m;
+
+    include ssl.conf;
 
     location /static/ {
         alias {{ deploy_src_work_dir }}/static/;

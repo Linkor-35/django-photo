@@ -1,7 +1,7 @@
 
 ssl_certificate     /etc/letsencrypt/live/{{ run_site_domain }}/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/{{ run_site_domain }}/privkey.pem;
-
+# ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
 ssl_session_cache shared:le_nginx_SSL:1m;
 ssl_session_timeout 1440m;
