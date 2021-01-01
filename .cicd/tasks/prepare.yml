@@ -1,0 +1,43 @@
+---
+- name: "Prepare | создаем для начала группу для пользователя"
+  group:
+    name: "{{ app_user_group }}"
+    state: present
+
+- name: "Prepare | создаем учетную запись пользователя под которым будем ходить на сервер"
+  user:
+    name: "{{ app_user_name }}"
+    shell: /bin/bash
+    groups: "{{ app_user_group }}"
+    password: "{{ app_user_pass | password_hash('sha512') }}"
+    update_password: on_create
+
+- name: "Prepare | правим файл sudoers и проверяем его перед сохранением"
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%{{ app_user_group }} ALL='
+    line: '%{{ app_user_group }} ALL=(ALL) NOPASSWD: ALL'
+    validate: /usr/sbin/visudo -cf %s
+
+- name: "Prepare | добавляем созданному пользователю свой ключ"
+  authorized_key:
+    user: "{{ app_user_name }}"
+    key: "{{ item }}"
+  with_items: "{{ app_user_keys }}"
+
+- name: "Prepare | создаем .bash_profile"
+  copy:
+    src: "{{ app_user_bash_profile_content }}"
+    dest: "/home/{{ app_user_name }}/.bash_profile"
+    owner: "{{ app_user_name }}"
+    group: "{{ app_user_group }}"
+    mode: 0644
+
+- name: "Prepare | создаем .vimrc"
+  copy:
+    src: "{{ app_user_vimrc }}"
+    dest: "/home/{{ app_user_name }}/.vimrc"
+    owner: "{{ app_user_name }}"
+    group: "{{ app_user_group }}"
+    mode: 0644

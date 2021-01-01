@@ -1,0 +1,27 @@
+---
+
+- name: "Deploy | создаем директорию"
+  file:
+    path: "{{ deploy_src_repo_dest }}"
+    state: directory
+    owner: "{{ app_user_name }}"
+    group: "{{ app_user_group }}"
+    mode: 0755
+  become: true
+  become_user: "{{ app_user_name }}"
+
+
+- name: "Deploy | скачиваем свежую версию из git."
+  git:
+    repo: "{{ deploy_src_repo_url }}"
+    dest: "{{ deploy_src_repo_dest }}"
+    version: "{{ deploy_repository_branche_name }}"
+    update: true
+    force: true
+  register: repo_clone
+  become: true
+  become_user: "{{ app_user_name }}"
+
+- name: "Deploy | debug"
+  debug:
+    msg: "{{ repo_clone.after }}"

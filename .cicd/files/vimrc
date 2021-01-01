@@ -1,5 +1,5 @@
 syntax on
-colorscheme industry
+colorscheme delek
 set number
 set expandtab
 set tabstop=4

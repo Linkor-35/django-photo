@@ -1,0 +1,32 @@
+---
+- name: NGINX | add repos
+  template:
+    src: "../templates/nginx.list.j2"
+    dest: "/etc/apt/sources.list.d/nginx.list"
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+  become_user: root
+
+- name: NGINX | update apt cache
+  apt:
+    update_cache: true
+    cache_valid_time: 86400
+  become: true
+  become_user: root
+
+- name: NGINX | install nginx
+  apt:
+    name: nginx-full
+    state: present
+  become: true
+  become_user: root
+
+- name: NGINX | enable nginx service
+  systemd:
+    name: "nginx.service"
+    state: started
+    enabled: true
+  become: true
+  become_user: root
