@@ -25,7 +25,7 @@
     deploy_src_repo_url: "https://github.com/Linkor-35/django-photo.git"
     deploy_src_repo_dest: "/home/{{ app_user_name }}/app"
     deploy_src_work_dir: "{{ deploy_src_repo_dest }}/src"
-    deploy_repository_branche_name: "cicd"
+    deploy_repository_branche_name: "master"
 
     run_site_domain: "troyka-foto.ru"
     run_site_host: "127.0.0.1"
