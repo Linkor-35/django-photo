@@ -22,3 +22,10 @@
   become: true
   become_user: root
   notify: daemon reload
+
+- name: "RUN | restart {{ run_site_domain }}.service"
+  systemd:
+    name: "{{ run_site_domain }}.service"
+    state: restarted
+  become: true
+  become_user: root
