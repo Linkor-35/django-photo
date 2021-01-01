@@ -1,5 +1,5 @@
 ---
-- name:
+- name: "RUN | install requirements in virtual environment"
   pip:
      requirements: "{{ deploy_src_repo_dest }}/requirements.txt"
      virtualenv: "{{ deploy_src_repo_dest }}/venv"
