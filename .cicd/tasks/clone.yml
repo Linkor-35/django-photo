@@ -1,6 +1,6 @@
 ---
 
-- name: "Deploy | создаем директорию"
+- name: "Clone | создаем директорию"
   file:
     path: "{{ deploy_src_repo_dest }}"
     state: directory
@@ -11,7 +11,7 @@
   become_user: "{{ app_user_name }}"
 
 
-- name: "Deploy | скачиваем свежую версию из git."
+- name: "Clone | скачиваем свежую версию из git."
   git:
     repo: "{{ deploy_src_repo_url }}"
     dest: "{{ deploy_src_repo_dest }}"
@@ -22,6 +22,6 @@
   become: true
   become_user: "{{ app_user_name }}"
 
-- name: "Deploy | debug"
+- name: "Clone | debug"
   debug:
     msg: "{{ repo_clone.after }}"
