@@ -6,7 +6,7 @@ server {
     listen 80;
 
     # CHANGE THIS TO YOUR SERVER'S NAME
-    server_name {{ run_site_domain }};
+    server_name {{ run_site_domain }} www.{{ run_site_domain }};
 
     # Logging configuration
     access_log {{ run_site_nginx_access_log }};
