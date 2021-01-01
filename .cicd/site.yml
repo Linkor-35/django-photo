@@ -38,4 +38,4 @@
       include_tasks: ./tasks/clone.yml
 
     - name: RUN
-      include_tasks: .tasks/run.yml
+      include_tasks: ./tasks/run.yml
