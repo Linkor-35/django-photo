@@ -34,6 +34,8 @@
     run_site_pid: /var/tmp/troyka.pid
     run_site_nginx_default: "/etc/nginx/conf.d/default.conf"
     run_site_systemd_unit: "/etc/systemd/system/{{ run_site_domain }}.service"
+    run_site_nginx_access_log: "/var/log/nginx/{{ run_site_domain }}.access.log"
+    run_site_nginx_error_log: "/var/log/nginx/{{ run_site_domain }}.error.log"
     run_site_secret_key: "$up3RseCR37"
     run_site_allowed_hosts:
       - "127.0.0.1"
