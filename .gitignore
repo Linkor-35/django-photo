@@ -1,7 +1,11 @@
 /venv
 .idea
+.env
+env/
+venv/
 
 SECRET.py
 
 db.sqlite3
 __pycache__/
+
