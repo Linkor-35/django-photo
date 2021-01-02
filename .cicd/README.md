@@ -47,9 +47,39 @@ git clone https://github.com/Linkor-35/django-photo.git
 cd django-photo/.cicd
 # установка зависимосте  ansible
 ansible-galaxy install -r requirements.yml
-# кладем мастер-пароль от секртов
+# кладем мастер-пароль от секретов
 echo "secret" > .vault_pass
 # запускаем мастер-плейбук с указанием мастер-пароля
 ansible-playbook site.yml --vault-password-file=./.vault_pass
 ```
-Дождаться завершения работы.
+Дождаться завершения работы или алерта в [канал](https://t.me/joinchat/UPrS7rPVm9vkMfha).
+
+## Работа с секретами
+Хранение секретов реализовано через `ansible-vault`. Подробнее о работе смотреть [документацию](https://docs.ansible.com/ansible/latest/user_guide/vault.html).
+
+Склонировать репозиторий:
+```bash
+git clone https://github.com/Linkor-35/django-photo.git
+```
+
+Переходим в директорию с `ansible`:
+```bash
+cd django-photo/.cicd
+```
+Кладем пароль в специальный файл:
+```bash
+# кладем мастер-пароль от секретов
+echo "secret" > .vault_pass
+```
+Расшифровать файл с секретами:
+```bash
+ansible-vault decrypt secrets.yml
+Decryption successful
+```
+После расшифровки можно открыть в любом текстовом редакторе и поправить/заменить значения. По завершении редактирования и перед откравкой изменений в репозиторий **ОБЯЗАТЕЛЬНО** зашифровать файл с секретами.
+
+Зашифровать файл с секретами:
+```bash
+ansible-vault encrypt secrets.yml
+Encryption successful
+```
