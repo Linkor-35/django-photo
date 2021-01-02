@@ -1,13 +1,7 @@
 ---
 # basic user configuration
 app_user_name: "troyka"
-app_user_pass: "!vault |
-      $ANSIBLE_VAULT;1.1;AES256
-      36666138646233303063663365356536343064366632633435653161643264306166393262376637
-      6133303162383135306239353064633030636338373030360a333332643361366165643434643035
-      38373030633037303938383239393135653934633334663637373162336439626136386164646235
-      3235653030616665390a316462613331666664343663666633333962643963633264653534616235
-      3363"
+
 app_user_keys:
   - "https://github.com/jtprog.keys"
   - "https://github.com/Linkor-35.keys"
@@ -20,7 +14,7 @@ app_user_vimrc: "vimrc"
 deploy_src_repo_url: "https://github.com/Linkor-35/django-photo.git"
 deploy_src_repo_dest: "/home/{{ app_user_name }}/app"
 deploy_src_work_dir: "{{ deploy_src_repo_dest }}/src"
-deploy_repository_branche_name: "cicd"
+deploy_repository_branche_name: "master"
 
 # configure and run application
 run_site_domain: "troyka-foto.ru"
@@ -32,7 +26,7 @@ run_site_nginx_default: "/etc/nginx/conf.d/default.conf"
 run_site_systemd_unit: "/etc/systemd/system/{{ run_site_domain }}.service"
 run_site_nginx_access_log: "/var/log/nginx/{{ run_site_domain }}.access.log"
 run_site_nginx_error_log: "/var/log/nginx/{{ run_site_domain }}.error.log"
-run_site_secret_key: "$up3RseCR37"
+
 run_site_nginx_upstream_name: "python-backend"
 run_site_allowed_hosts:
   - "127.0.0.1"
@@ -58,21 +52,7 @@ certbot_certs:
       - "{{ run_site_domain }}"
       - "www.{{ run_site_domain }}"
 
-telegram_token: "!vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          33663235393435666531626661663830643832613732633235373462323831353564643863386433
-          6339393932376165616464376166313731643039366534310a333830333737303961353463303465
-          38633438656666616332326633353739373562363661623666383139623839666232663162333032
-          6636653666643366310a366433323165616363306466323333396536353337336132616636353961
-          61666265613266623065356335656536303466363665393762343639353862383962333838363935
-          3133383463373433653761626130633138363734343735616366"
-telegram_chat_id: "!vault |
-          $ANSIBLE_VAULT;1.1;AES256
-          66316330626633666434653061613333333337623535373732663237353066626161656530613231
-          3066633861363036323837643134616135343630313661390a626535343062633762393062336536
-          32393961626338333738636632313638303166383165623766626631396338616163333131346162
-          6533306531303337630a636136623762336438626438626236363066346266653138313961346331
-          6366"
+
 
 #
 # https://acme-staging.api.letsencrypt.org/director

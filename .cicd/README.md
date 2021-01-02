@@ -43,7 +43,13 @@ git clone https://github.com/Linkor-35/django-photo.git
 ```
 Перейти в директорию с автоматизацией и запустить ansible-playbook:
 ```bash
+# переход в директорию с ansible
 cd django-photo/.cicd
-ansible-playbook site.yml
+# установка зависимосте  ansible
+ansible-galaxy install -r requirements.yml
+# кладем мастер-пароль от секртов
+echo "secret" > .vault_pass
+# запускаем мастер-плейбук с указанием мастер-пароля
+ansible-playbook site.yml --vault-password-file=./.vault_pass
 ```
 Дождаться завершения работы.

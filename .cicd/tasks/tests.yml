@@ -1,28 +1,35 @@
 ---
+- name: TEST | Sleep for 120 seconds and continue with play
+  wait_for:
+    timeout: 120
+  delegate_to: localhost
+  become: false
+
 - name: TEST | curl https
   uri:
-    url: "https://{{ run_site_domain }}/"
+    url: "http://{{ run_site_domain }}/"
     status_code: 200
     method: GET
-  register: test
+    timeout: 60
+  register: get_site
   delegate_to: localhost
   become: false
 
 - name: TEST | debug
   debug:
-    msg: "{{ test.url }} return {{ test.status }}"
+    msg: "{{ get_site.url }} return {{ get_site.status }}"
 
 - name: TEST | Alert
   telegram:
     token: "{{ telegram_token }}"
     chat_id: "{{ telegram_chat_id }}"
-    msg_format: html
+    msg_format: markdown
     msg: |
       Deploy status: ✅
-      Project: \`{{ run_site_domain }}\`
-      URL: {{ test.url }}
-      Branch: {{ deploy_repository_branche_name }}
-      Status code: \`{{ test.status }}\`
+      Project: `{{ run_site_domain }}`
+      URL: {{ get_site.url }}
+      Branch: `{{ deploy_repository_branche_name }}`
+      Status code: `{{ get_site.status }}`
 
   delegate_to: localhost
   become: false
