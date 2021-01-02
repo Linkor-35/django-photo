@@ -83,3 +83,6 @@ Decryption successful
 ansible-vault encrypt secrets.yml
 Encryption successful
 ```
+## Example
+В качестве примера смотреть вот тут: [asciinema](https://asciinema.org/a/P3nWbd1q7Fsp0JkRwItzVv2cZ).
+
