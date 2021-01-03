@@ -48,7 +48,16 @@ jobs:
         key: ${{ secrets.ANSIBLE_SSH_PK }}
         inventory: |
           [troyka]
-          ${{ secrets.REMOTE_SERVER }}
+          skyhost-vds-22211
+
+          [troyka:vars]
+          ansible_host=${{ secrets.REMOTE_SERVER }}
+          ansible_user=root
+          ansible_python_interpreter=/usr/bin/python3
+
+          [all:children]
+          troyka
+
         vault_password: ${{ secrets.ANSIBLE_VAULT_PASS }}
         options: |
           --verbose
