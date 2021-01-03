@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
+from .forms import OrderForm
 
 
 def index(request):
@@ -33,8 +34,18 @@ def contacts(request):
 
 def upload(request):
     if request.method == "POST":
-        upload_file = request.FILES['document']
-        fs = FileSystemStorage()
-        fs.save(upload_file.name, upload_file)
-        print(upload_file.name, upload_file.size)
-    return render(request, 'main/upload.html')
+        form = OrderForm(request.POST, request.FILES)
+        if form.is_valid():
+            import uuid
+            form.fields['order_uidd'] = str(uuid.uuid4())
+            form.save()
+            return render(request, 'main/upload_done.html')
+    else:
+        form = OrderForm()
+        return render(request, 'main/upload.html', {
+            'form' : form
+        })
+
+def upload_done(request):
+    return render(request, 'main/upload_done.html')
+
