@@ -11,6 +11,7 @@ Group={{ app_user_group }}
 PIDFile={{ run_site_pid }}
 Environment=SECRET_KEY={{ run_site_secret_key }}
 Environment=ALLOWED_HOSTS="{{ run_site_allowed_hosts | join(' ') }}"
+Environment=DEBUG={{ run_site_django_debug_mode }}
 WorkingDirectory={{ deploy_src_work_dir }}
 
 ExecStart={{ deploy_src_repo_dest }}/venv/bin/gunicorn --pid {{ run_site_pid }} --pythonpath {{ deploy_src_work_dir }} --config {{ run_site_gunicorn_dest }} photo.wsgi
