@@ -9,6 +9,8 @@ roles/
 SECRET.py
 .vault_pass
 
-
+static/
+media/
+db.sqlite3
 __pycache__/
 /.vscode
