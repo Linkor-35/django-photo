@@ -5,6 +5,7 @@ app_user_name: "troyka"
 app_user_keys:
   - "https://github.com/jtprog.keys"
   - "https://github.com/Linkor-35.keys"
+  - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDGiAIAD5aaBpMZfZDmw2Stawb5lx16yySzfz8R64UmINbL/keakxVQHIoYm2CU8PL3kmvufmSOMoZ6vQYtur9eB4JEhlZTuVUw5UTzqkNyYvy6f64sghdy6cyYaKmF9g/Ub7ZYaLynETk4oulyyUqFOGDpsKNq3zQJfNq6CEknv//BGgDWvowozxhHWLge7X9EICNXBPyqlba8+bq3D4I4tYwSNqDB3+5XPFtMaO0ygfngVUTGrh2P7FATAD+fgw02o5bSakCvLLwwQtveK+Aall19nYklUNr8/lvYBE3/jLjtPpF1Tw8JvPu1h4wYm5ymEUo0DKpOjVAMSuOSloRN github_actions"
 
 app_user_group: "admins"
 app_user_bash_profile_content: "bash_profile"
