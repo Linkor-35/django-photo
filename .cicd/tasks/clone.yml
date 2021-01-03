@@ -12,7 +12,7 @@
 
 - name: "Clone | создаем директорию"
   file:
-    path: "{{ deploy_src_repo_dest }}/{{ item }}"
+    path: "{{ deploy_src_repo_dest }}/src/{{ item }}"
     state: directory
     owner: "{{ app_user_name }}"
     group: "{{ app_user_group }}"
