@@ -56,13 +56,3 @@ jobs:
         options: |
           --verbose
           --vault-password-file=./.vault_pass
-
-    # - name: Run deploy
-    #   run: |
-    #     echo ${{ secrets.ANSIBLE_VAULT_PASS }} > .cicd/.vault_pass
-    #     echo ${{ secrets.ANSIBLE_SSH_PK }} > ~/.ssh/id_rsa
-    #     cd .cicd/
-    #     ansible-playbook site.yml --vault-password-file=./.vault_pass
-    #
-    #   env:
-    #     PY_COLORS: '1'
