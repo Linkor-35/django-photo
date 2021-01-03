@@ -37,11 +37,27 @@ jobs:
         ansible --version
 
     - name: Run deploy
-      run: |
-        echo ${{ secrets.ANSIBLE_VAULT_PASS }} > .cicd/.vault_pass
-        echo ${{ secrets.ANSIBLE_SSH_PK }} > ~/.ssh/id_rsa
-        cd .cicd/
-        ansible-playbook site.yml --vault-password-file=./.vault_pass
+      uses: dawidd6/action-ansible-playbook@v2
+      with:
+        playbook: site.yml
+        directory: .cicd/
+        key: ${{ secrets.ANSIBLE_SSH_PK }}
+        # inventory: |
+        #   [all]
+        #   example.com
+        #
+        #   [group1]
+        #   example.com
+        vault_password: ${{ secrets.ANSIBLE_VAULT_PASS }}
+        options: |
+          --verbose
 
-      env:
-        PY_COLORS: '1'
+    # - name: Run deploy
+    #   run: |
+    #     echo ${{ secrets.ANSIBLE_VAULT_PASS }} > .cicd/.vault_pass
+    #     echo ${{ secrets.ANSIBLE_SSH_PK }} > ~/.ssh/id_rsa
+    #     cd .cicd/
+    #     ansible-playbook site.yml --vault-password-file=./.vault_pass
+    #
+    #   env:
+    #     PY_COLORS: '1'
