@@ -55,7 +55,7 @@ jobs:
         vault_password: ${{ secrets.ANSIBLE_VAULT_PASS }}
         options: |
           --verbose
-          -vault-password-file=./.vault_pass
+          --vault-password-file=./.vault_pass
 
     # - name: Run deploy
     #   run: |
