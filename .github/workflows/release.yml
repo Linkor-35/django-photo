@@ -36,6 +36,10 @@ jobs:
         pip install ansible
         ansible --version
 
+    - name: Get vault password
+      run: |
+        echo ${{ secrets.ANSIBLE_VAULT_PASS }} > .cicd/.vault_pass
+
     - name: Run deploy
       uses: dawidd6/action-ansible-playbook@v2
       with:
@@ -51,6 +55,7 @@ jobs:
         vault_password: ${{ secrets.ANSIBLE_VAULT_PASS }}
         options: |
           --verbose
+          -vault-password-file=./.vault_pass
 
     # - name: Run deploy
     #   run: |
