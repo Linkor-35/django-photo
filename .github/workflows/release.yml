@@ -46,13 +46,9 @@ jobs:
         playbook: site.yml
         directory: .cicd/
         key: ${{ secrets.ANSIBLE_SSH_PK }}
-        # inventory: |
-        #   [all]
-        #   example.com
-        #
-        #   [group1]
-        #   example.com
+        inventory: |
+          [troyka]
+          ${{ secrets.REMOTE_SERVER }}
         vault_password: ${{ secrets.ANSIBLE_VAULT_PASS }}
         options: |
           --verbose
-          --vault-password-file=./.vault_pass
