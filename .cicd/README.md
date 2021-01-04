@@ -96,6 +96,8 @@ Encryption successful
 
 ## Full workflow
 
+Примерно вот так должно выглядеть все общение с репозиторием:
+
 ```bash
 # Clone repo
 git clone https://github.com/Linkor-35/django-photo.git
@@ -112,8 +114,10 @@ git merge test
 # Tag last commit
 git tag <year>.<month>.<ordinal_number>
 # i.e.
-# git tag 2021.01.25
+# git tag 2021.01.3000
 # Send all changes to remote
 git push --all
 git push --tags
 ```
+
+Все важные/ключевые переменные заданы через секреты данного репозитория. Так же локально присутствующий файл `inventory.ini` используется только для обкатки каких-либо команд автоматизации. Реальный хост для деплоя задается так же через секреты.
