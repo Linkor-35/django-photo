@@ -6,6 +6,7 @@ def get_uuid():
     uid = str(uuid.uuid4().fields[0])
     return uid
 
+
 class Order(models.Model):
     order_uidd = models.CharField('Идентификатор', default=get_uuid(), max_length=10)
     is_done = models.BooleanField('Выполнен?', default=False)

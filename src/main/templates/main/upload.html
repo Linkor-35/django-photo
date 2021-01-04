@@ -1,10 +1,48 @@
 {% extends 'main/base.html'  %}
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css"/>
 
 {% block content %}
+
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Сделать заказ</button>
+    <div class="container-flud">
+        <div class="row">
+            <div class="card" style="width: 20rem; background-color: antiquewhite; margin: 10px;">
+                <div class="card-body">
+                    <h5>Заполните форму:</h5>
+                    <p class="card-text" >Размер фото: {{ photo.photo_size }}</p>
+                    <p class="card-text" >Матовая? {{ photo.photo_type }}</p>
+                    <p class="card-text" >Колличество: {{ photo.count }}</p>
+                    <p class="card-text" >Выберите изображение: {{ photo.img }}</p>
+                    <hr class='my-4' >
+                    <a type='submit' class='btn btn-primary' href="">Загрузить еще фото.</a>
+                </div>
+            </div>
+            <div class="card" style="width: 20rem; background-color: antiquewhite; margin: 10px;">
+                <div class="card-body">
+                    <h5>Заполните форму:</h5>
+                    <p class="card-text" >Размер фото: {{ photo.photo_size }}</p>
+                    <p class="card-text" >Матовая? {{ photo.photo_type }}</p>
+                    <p class="card-text" >Колличество: {{ photo.count }}</p>
+                    <p class="card-text" >Выберите изображение: {{ photo.img }}</p>
+                    <hr class='my-4' >
+                    <a type='submit' class='btn btn-primary' href="">Загрузить еще фото.</a>
+                </div>
+            </div><div class="card" style="width: 20rem; background-color: antiquewhite; margin: 10px;">
+                <div class="card-body">
+                    <h5>Заполните форму:</h5>
+                    <p class="card-text" >Размер фото: {{ photo.photo_size }}</p>
+                    <p class="card-text" >Матовая? {{ photo.photo_type }}</p>
+                    <p class="card-text" >Колличество: {{ photo.count }}</p>
+                    <p class="card-text" >Выберите изображение: {{ photo.img }}</p>
+                    <hr class='my-4' >
+                    <a type='submit' class='btn btn-primary' href="">Загрузить еще фото.</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" style="margin-right: 30px;">Сделать заказ</button>
 </form>
 {% endblock %}
