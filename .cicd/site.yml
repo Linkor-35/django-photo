@@ -25,21 +25,53 @@
 
 
   tasks:
+    - name: BASIC SOFT
+      include_role:
+        name: jtprog.install_base_soft
+      tags:
+        - basicsoft
+        - install
+
     # - name: LE
     #   include_role:
     #     name: geerlingguy.certbot
+    #   tags:
+    #     - letsencrypt
+    #     - certbot
 
     - name: NGINX
       include_tasks: ./tasks/install-nginx.yml
+      tags:
+        - install
+        - nginx
 
     - name: Prepare
       include_tasks: ./tasks/prepare.yml
+      tags:
+        - prepare
+        - users
 
     - name: Clone
       include_tasks: ./tasks/clone.yml
+      tags:
+        - clone
+        - repos
 
     - name: RUN
-      include_tasks: ./tasks/run.yml
+      include_tasks: ./tasks/run-app.yml
+      tags:
+        - run
+        - app
 
     - name: TEST
       include_tasks: ./tasks/tests.yml
+      tags:
+        - test
+        - curl
+
+    - name: MIGRATE
+      include_tasks: ./tasks/migrate.yml
+      tags:
+        - collectstatic
+        - migrations
+        - update

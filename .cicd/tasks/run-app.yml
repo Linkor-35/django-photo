@@ -11,6 +11,9 @@
   template:
     src: "gunicorn.py.j2"
     dest: "{{ run_site_gunicorn_dest }}"
+    owner: "{{ app_user_name }}"
+    group: "{{ app_user_name }}"
+    mode: 0755
   become: true
   become_user: "{{ app_user_name }}"
 

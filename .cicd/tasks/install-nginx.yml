@@ -1,7 +1,7 @@
 ---
 - name: NGINX | add repos
   template:
-    src: "../templates/nginx.list.j2"
+    src: "nginx.list.j2"
     dest: "/etc/apt/sources.list.d/nginx.list"
     owner: root
     group: root

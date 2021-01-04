@@ -1,0 +1,16 @@
+---
+
+- name: MIGRATE | Collect static
+  django_manage:
+    command: collectstatic --noinput
+    project_path: "{{ deploy_src_work_dir }}"
+    settings: "photo.settings"
+    virtualenv: "{{ deploy_src_repo_dest }}"
+
+- name: MIGRATE | Migrate
+  django_manage:
+    command: migrate
+    project_path: "{{ deploy_src_work_dir }}"
+    settings: "photo.settings"
+    database: "{{ deploy_src_work_dir }}/db.sqlite3"
+    virtualenv: "{{ deploy_src_repo_dest }}"

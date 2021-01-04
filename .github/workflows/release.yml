@@ -40,6 +40,11 @@ jobs:
       run: |
         echo ${{ secrets.ANSIBLE_VAULT_PASS }} > .cicd/.vault_pass
 
+    - name: Install requirements from Ansible Galaxy
+      run: |
+        cd .cicd/
+        ansible-galaxy install -r requirements.yml
+
     - name: Run deploy
       uses: dawidd6/action-ansible-playbook@v2
       with:
