@@ -51,8 +51,9 @@ jobs:
 
     - name: Install ansible
       run: |
-        pip install ansible
+        pip install ansible ansible-lint
         ansible --version
+        ansible-lint --version
 
     - name: Get vault password
       run: |
