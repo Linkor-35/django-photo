@@ -25,13 +25,6 @@
 
 
   tasks:
-    - name: BASIC SOFT
-      include_role:
-        name: jtprog.install_base_soft
-      tags:
-        - basicsoft
-        - install
-
     # - name: LE
     #   include_role:
     #     name: geerlingguy.certbot
