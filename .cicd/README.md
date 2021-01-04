@@ -15,6 +15,7 @@ date +%s | sha256sum | base64 | head -c 64 ; echo
 
 ## Полный запуск делается следующим образом
 Заполнить файл [inventory.ini](inventory.ini) по аналогии с текущей записью.
+
 ```ini
 # имя группы хостов
 [troyka]
@@ -38,10 +39,12 @@ troyka
 > **Важно!** Запуск ansible возможен только на Linux системе.
 
 Склонировать данный репозиторий:
+
 ```bash
 git clone https://github.com/Linkor-35/django-photo.git
 ```
 Перейти в директорию с автоматизацией и запустить ansible-playbook:
+
 ```bash
 # переход в директорию с ansible
 cd django-photo/.cicd
@@ -58,20 +61,24 @@ ansible-playbook site.yml --vault-password-file=./.vault_pass
 Хранение секретов реализовано через `ansible-vault`. Подробнее о работе смотреть [документацию](https://docs.ansible.com/ansible/latest/user_guide/vault.html).
 
 Склонировать репозиторий:
+
 ```bash
 git clone https://github.com/Linkor-35/django-photo.git
 ```
 
 Переходим в директорию с `ansible`:
+
 ```bash
 cd django-photo/.cicd
 ```
 Кладем пароль в специальный файл:
+
 ```bash
 # кладем мастер-пароль от секретов
 echo "secret" > .vault_pass
 ```
 Расшифровать файл с секретами:
+
 ```bash
 ansible-vault decrypt secrets.yml
 Decryption successful
@@ -79,6 +86,7 @@ Decryption successful
 После расшифровки можно открыть в любом текстовом редакторе и поправить/заменить значения. По завершении редактирования и перед откравкой изменений в репозиторий **ОБЯЗАТЕЛЬНО** зашифровать файл с секретами.
 
 Зашифровать файл с секретами:
+
 ```bash
 ansible-vault encrypt secrets.yml
 Encryption successful
@@ -86,3 +94,26 @@ Encryption successful
 ## Example
 В качестве примера смотреть вот тут: [asciinema](https://asciinema.org/a/P3nWbd1q7Fsp0JkRwItzVv2cZ).
 
+## Full workflow
+
+```bash
+# Clone repo
+git clone https://github.com/Linkor-35/django-photo.git
+# Go into dir
+cd django-photo
+# Checkout to developer branche
+git checkout test
+# Edit some files
+vim ./some/file.py
+# After edit all files
+git checkout master
+# Merge all changes to master
+git merge test
+# Tag last commit
+git tag <year>.<month>.<ordinal_number>
+# i.e.
+# git tag 2021.01.25
+# Send all changes to remote
+git push --all
+git push --tags
+```
