@@ -28,3 +28,22 @@ jobs:
       run: |
         cd src/
         python manage.py test
+
+    - name: Install ansible
+      run: |
+        pip install ansible
+        ansible --version
+
+    - name: Get vault password
+      run: |
+        echo ${{ secrets.ANSIBLE_VAULT_PASS }} > .cicd/.vault_pass
+
+    - name: Install requirements from Ansible Galaxy
+      run: |
+        cd .cicd/
+        ansible-galaxy install -r requirements.yml
+
+    - name: Run ansible-lint
+      run: |
+        cd .cicd/
+        ansible-lint ./site.yml
