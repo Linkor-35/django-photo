@@ -1,16 +1,41 @@
 ---
 
+- name: MIGRATE | Check
+  django_manage:
+    command: check
+    app_path: "{{ deploy_src_work_dir }}"
+    settings: "photo.settings"
+    pythonpath: "{{ deploy_src_repo_dest }}/venv/bin/"
+    virtualenv: "{{ deploy_src_repo_dest }}/venv/"
+  become: true
+  become_user: "{{ app_user_name }}"
+  tags:
+    - test
+    - update
+
 - name: MIGRATE | Collect static
   django_manage:
-    command: collectstatic --noinput
-    project_path: "{{ deploy_src_work_dir }}"
+    command: collectstatic
+    app_path: "{{ deploy_src_work_dir }}"
+    clear: true
     settings: "photo.settings"
-    virtualenv: "{{ deploy_src_repo_dest }}"
+    pythonpath: "{{ deploy_src_repo_dest }}/venv/bin/"
+    virtualenv: "{{ deploy_src_repo_dest }}/venv/"
+  become: true
+  become_user: "{{ app_user_name }}"
+  tags:
+    - collectstatic
+    - update
 
 - name: MIGRATE | Migrate
   django_manage:
     command: migrate
-    project_path: "{{ deploy_src_work_dir }}"
+    app_path: "{{ deploy_src_work_dir }}"
     settings: "photo.settings"
-    database: "{{ deploy_src_work_dir }}/db.sqlite3"
-    virtualenv: "{{ deploy_src_repo_dest }}"
+    pythonpath: "{{ deploy_src_repo_dest }}/venv/bin/"
+    virtualenv: "{{ deploy_src_repo_dest }}/venv/"
+  become: true
+  become_user: "{{ app_user_name }}"
+  tags:
+    - migrations
+    - update
