@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 from .forms import OrderForm
+import uuid
 
 
 def index(request):
@@ -35,9 +36,8 @@ def contacts(request):
 def upload(request):
     if request.method == "POST":
         form = OrderForm(request.POST, request.FILES)
+        # тут нужно внести данные в поле "order_uidd"
         if form.is_valid():
-            import uuid
-            form.fields['order_uidd'] = str(uuid.uuid4())
             form.save()
             return render(request, 'main/upload_done.html')
     else:
@@ -45,6 +45,7 @@ def upload(request):
         return render(request, 'main/upload.html', {
             'form' : form
         })
+
 
 def upload_done(request):
     return render(request, 'main/upload_done.html')

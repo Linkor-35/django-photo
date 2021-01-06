@@ -1,10 +1,84 @@
 {% extends 'main/base.html'  %}
 
-
 {% block content %}
-<form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Сделать заказ</button>
-</form>
+<style>
+#contacts {
+    width: 100%;
+    float: left;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    border-top: 4px;
+    background: #f4f4f4;
+}
+#contacts h5 {
+    font-size: 1.3em;
+}
+
+#form_input {
+    margin-top: 10px;
+    width: 35%;
+    margin-left: 38%;
+    font-size: 1.1em;
+}
+
+#form_input label {
+    min-width: 170px;
+    color: #505050;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+#form_input input, #form_input textarea {
+    margin-bottom: 10px;
+    width: 70%;
+    padding: 10px 2%;
+    border-radius: 7px;
+    border: 2px solid silver;
+    font-size: 0.9em;
+    color: #4a4a4a;
+    min-width: 300px;
+}
+
+#id_photo_size, #id_photo_type{
+    width: 130px;
+    margin-top: 3px;
+    border-radius: 7px;
+    border: 2px solid silver;
+    float: right;
+
+}
+
+#id_count {
+    float: right;
+    width: 130px;
+}
+
+.btn_submit {
+    float: right;
+    background-color: #1E90FF;
+    border-radius: 5px;
+    padding: 5px 9px;
+    font-size: 1.2em;
+    text-shadow: #454545 0 0 2px;
+    cursor: pointer;
+    color: black;
+    {% comment %} font-family:  {% endcomment %}
+}
+
+</style>
+<div id="contacts">
+    <form id="form_input" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <center><h5>Данные для заказа.</h5></center>
+            <label for="name">Размер фото: <span>*</span></label>{{ form.photo_size }}<br>
+            <label for="name">Тип фото: <span>*</span></label>{{ form.photo_type }}<br>
+            <label for="name">Выберите фаил: <span>*</span><br>
+            </label><div>{{ form.img }}</div><br>
+            <label for="name">Колличество: <span>*</span></label><div>{{ form.count }}</div><br>
+            <label for="name">Введите номер телефона: <span>*</span></label>{{ form.phone }}<br>
+        </div>
+        <button type="submit" class="btn_submit">Сделать заказ</button>
+    </form>
+</div>
 {% endblock %}
