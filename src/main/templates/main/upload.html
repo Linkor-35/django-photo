@@ -2,81 +2,108 @@
 
 {% block content %}
 <style>
-#contacts {
-    width: 100%;
-    float: left;
-    padding-bottom: 40px;
-    padding-top: 30px;
-    border-top: 4px;
-    background: #f4f4f4;
-}
-#contacts h5 {
-    font-size: 1.3em;
-}
-
-#form_input {
+.contacts_form {
     margin-top: 10px;
-    width: 35%;
-    margin-left: 38%;
-    font-size: 1.1em;
-}
+    width: 30%;
 
-#form_input label {
-    min-width: 170px;
-    color: #505050;
-    cursor: pointer;
-    font-size: 1.1em;
-}
-
-#form_input input, #form_input textarea {
-    margin-bottom: 10px;
-    width: 70%;
-    padding: 10px 2%;
-    border-radius: 7px;
-    border: 2px solid silver;
-    font-size: 0.9em;
-    color: #4a4a4a;
-    min-width: 300px;
-}
-
-#id_photo_size, #id_photo_type{
-    width: 130px;
-    margin-top: 3px;
-    border-radius: 7px;
-    border: 2px solid silver;
-    float: right;
-
-}
-
-#id_count {
-    float: right;
-    width: 130px;
 }
 
 .btn_submit {
-    float: right;
-    background-color: #1E90FF;
-    border-radius: 5px;
-    padding: 5px 9px;
-    font-size: 1.2em;
-    text-shadow: #454545 0 0 2px;
-    cursor: pointer;
-    color: black;
-    {% comment %} font-family:  {% endcomment %}
+    font-size: 0.5em;
+    padding: 20px;
+    background-color: #6c8ca7;
+    font-family: Pacifico;
+    border-radius: 10px;
+    margin-top: 20px;
 }
 
+.btn_submit:hover {
+    color: black;
+    text-decoration: underline;
+    background-color:#3f295f ;
+}
+
+.input_area {
+    min-height: 380px;
+    min-width: 330px;
+    padding: 5px;
+    width: 33%;
+    margin-left: 33%;
+    border-radius: 15px;
+    border:2px solid silver;
+    white-space: nowrap;
+}
+
+center h5 {
+    font-size: 0.5em;
+}
+
+.input_area label {
+    margin-left: 2px;
+    font-size: 30px;
+}
+
+span {
+    color: red;
+}
+
+.l2 {
+    font-family: Piazzolla;
+    float: left;
+    margin-left: 3%;
+    font-size: 1px;
+}
+
+#id_photo_size, #id_photo_type, #id_count, #id_phone {
+    font-family: Piazzolla;
+    margin-top: 2%;
+    float: right;
+    width: 35%;
+    font-size: 16px;
+    border:2px solid silver;
+    border-radius: 5px;
+    background-color: #72808c;
+    text-align: right;
+}
+
+#id_img {
+    cursor:pointer;
+    width:100%;
+    float:left;
+    font-family: Piazzolla;
+    font-size: 20px;
+    border-radius: 8px;
+    background-color: #72808c;
+}
+
+#input_number {
+    font-size: 0.53em;
+}
+
+#id_phone {
+    float: left;
+    padding: 3px;
+    height: 20px;
+    width:96%;
+    font: Piazzolla;
+    font-size: 15px;
+}
+
+
 </style>
-<div id="contacts">
+
+<div id="contacts_form">
     <form id="form_input" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div>
+        <div class="input_area">
             <center><h5>Данные для заказа.</h5></center>
-            <label for="name">Размер фото: <span>*</span></label>{{ form.photo_size }}<br>
-            <label for="name">Тип фото: <span>*</span></label>{{ form.photo_type }}<br>
-            <label for="name">Выберите фаил: <span>*</span><br>
+            <label class="l2">Размер фото: <span>* </span></label>{{ form.photo_size }}<br>
+            <label class="l2">Тип фото: <span>* </span></label>{{ form.photo_type }}<br>
+            <label class="l2">Выберите фаил: <span>* </span><br>
             </label><div>{{ form.img }}</div><br>
-            <label for="name">Колличество: <span>*</span></label><div>{{ form.count }}</div><br>
-            <label for="name">Введите номер телефона: <span>*</span></label>{{ form.phone }}<br>
+            <label class="l2">Колличество: <span>* </span></label><div>{{ form.count }}</div><br>
+            <label class="l2" id="input_number">Введите номер телефона: <span>* </span><br></label>
+            {{ form.phone }}
         </div>
         <button type="submit" class="btn_submit">Сделать заказ</button>
     </form>

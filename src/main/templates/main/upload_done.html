@@ -1,8 +1,37 @@
 {% extends 'main/base.html'  %}
 
 {% block content %}
+<style>
+h3, h4 {
+    font-family: Piazzolla;
+    font-size: 30px;
+}
+
+.button_upload {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: Piazzolla;
+    font-size: 0.5em;
+    float: left;
+    margin-top: 18%;
+    margin-left: 50px;
+    background-color: #4b698a;
+    border-radius: 7px;
+    padding: 20px;
+    border: 3px solid silver;
+}
+
+.button_upload:hover, .contacts1:hover, .contacts2:hover {
+    background-color: #3f295f;
+}
+
+</style>
 <h3>Ваш заказ отправлен в обработку !!!</h4>
 <h4>В ближайшее время с вами свяжется менеджер для уточнения заказа.</h3>
-<a href="/" class="btn btn-primary" >Вернуться на главную</a>
-<a href="/upload" class="btn btn-primary">Загрузить еще фото</a>
+<div class="button_upload">
+    <a href="upload">Вернуться на главную</a><br>
+</div>
+<div class="button_upload">
+    <a href="upload">Загрузить еще фото</a><br>
+</div>
 {% endblock %}
