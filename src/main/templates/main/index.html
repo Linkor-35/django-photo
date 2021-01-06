@@ -1,21 +1,81 @@
 {% extends 'main/base.html' %}
 
 {% block title %}
-Главная страница
+    Главная страница
 {% endblock %}
 
 {% block content %}
-<div>
-    <a class="btn btn-primary" href="upload">Заказать фото онлайн</a><br>
+<style>
+.button_upload {
+    font-size: 0.5em;
+    float: left;
+    margin-top: 18%;
+    margin-left: 50px;
+    background-color: #4b698a;
+    border-radius: 7px;
+    padding: 20px;
+    border: 3px solid silver;
+}
+
+.button_upload:hover, .contacts1:hover, .contacts2:hover {
+    background-color: #3f295f;
+}
+
+.group_contacts {
+    margin-right: 40px;
+    float: right;
+    width: 20%;
+}
+.contacts1, .contacts2 {
+    border-radius: 7px;
+    text-align: center;
+    margin-top: 30px;
+    font-size: 0.3em;
+    background-color: #4b698a;
+    padding: 10px;
+    font-size: 0.4em;
+    border: 3px solid silver;
+}
+
+.map {
+    float: left;
+    position: absolute;
+    margin-top: 550px;
+    margin-left: 55%;
+}
+
+.info {
+    position: absolute;
+    float: right;
+    font-size: 20px;
+    margin-top: 20px;
+
+}
+
+</style>
+<div class="button_upload">
+    <a href="upload">Заказать фото онлайн</a><br>
 </div>
-    <br>
-    <a href="https://vk.com/troyka_photo_uglich">Наша группа Вконтакте (VK.com)</a><br>
-    <a href="https://www.instagram.com/troikafoto_uglich/">Наш аккаунт в Инстаграмм</a><br>
+
+<div class="group_contacts">
+    <div class="contacts1">
+        <a href="https://vk.com/troyka_photo_uglich">Наша группа Вконтакте (VK.com)</a><br>
+    </div>
+        <div class="contacts2">
+        <a href="https://www.instagram.com/troikafoto_uglich/">Наш аккаунт в Инстаграмм</a><br>
+    </div>
+</div>
+<div class="info">
+    <p>Форматы для печати:<br> фото10х15 15х21 21х30 30х40 30х45</p>
+    <p>Так же можно заказать не стандартные размеры:<br> для этого свяжитесь с нами</p>
+</div>
+{% comment %} 
     <h4>Форматы для печати фото    10х15 15х21 21х30 30х40 30х45</h4>
     <h5>так же можно заказать не стандартные размеры для этого свяжитесь с нами</h5>
     <h4></h4><br>
     <h4>Наш адрес: г. Углич Базарный проезд д.1А</h4>
-    <h4>тел. 8(48532)2-24-65</h4>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1071.0286286052367!2d38.32472915835748!3d57.52844033529364!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b3b691c2368069%3A0xf9e7ca563f74844e!2z0JHQsNC30LDRgNC90YvQuSDQv9GALiwg0KPQs9C70LjRhywg0K_RgNC-0YHQu9Cw0LLRgdC60LDRjyDQvtCx0LsuLCAxNTI2MTU!5e0!3m2!1sru!2sru!4v1609086420598!5m2!1sru!2sru" width="600" height="450" frameborder="5" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-
+    <h4>тел. 8(48532)2-24-65</h4> {% endcomment %}
+<div class="map">
+    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A5c5eb174c82780895213124061a9ec99bca361054ce0ab69a5392701cf47798e&amp;source=constructor" width="500" height="400" frameborder="2"></iframe>
+</div>
 {% endblock %}
