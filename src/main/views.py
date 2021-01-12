@@ -1,8 +1,12 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
+<<<<<<< HEAD
 from .forms import OrderForm
 import uuid
+=======
+from .forms import OrderForm, PhotoForm
+>>>>>>> c34899ca9fad5e2c6cb9a49761b26fa5e3b65a7b
 
 
 def index(request):
@@ -40,10 +44,14 @@ def upload(request):
         if form.is_valid():
             form.save()
             return render(request, 'main/upload_done.html')
-    else:
+
+    if request.method == "GET":
         form = OrderForm()
+        photo = PhotoForm()
+
         return render(request, 'main/upload.html', {
-            'form' : form
+            'form' : form,
+            'photo' : photo
         })
 
 
