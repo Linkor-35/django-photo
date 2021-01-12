@@ -39,6 +39,8 @@ run_site_allowed_hosts:
 
 run_site_nginx_ssl: true
 
+
+# https://acme-staging.api.letsencrypt.org/director
 # letsencrypt
 certbot_auto_renew_user: "root"
 certbot_auto_renew_minute: "20"
@@ -53,21 +55,3 @@ certbot_certs:
   - domains:
       - "{{ run_site_domain }}"
       - "www.{{ run_site_domain }}"
-
-
-
-#
-# https://acme-staging.api.letsencrypt.org/director
-#
-# nginx_vhosts:
-#   - listen: "443 ssl http2"
-#     server_name: "{{ run_site_domain }}"
-#     root: "/usr/share/nginx/html"
-#     index: "index.html index.htm"
-#     state: "present"
-#     template: "{{ nginx_vhost_template }}"
-#     filename: "certbot_test.conf"
-#     extra_parameters: |
-#       ssl_certificate     /etc/letsencrypt/live/{{ run_site_domain }}/fullchain.pem;
-#       ssl_certificate_key /etc/letsencrypt/live/{{ run_site_domain }}/privkey.pem;
-#       ssl_protocols       TLSv1.1 TLSv1.2;

@@ -25,12 +25,12 @@
 
 
   tasks:
-    # - name: LE
-    #   include_role:
-    #     name: geerlingguy.certbot
-    #   tags:
-    #     - letsencrypt
-    #     - certbot
+    - name: LE
+      include_role:
+        name: geerlingguy.certbot
+      tags:
+        - letsencrypt
+        - certbot
 
     - name: NGINX
       include_tasks: ./tasks/install-nginx.yml
