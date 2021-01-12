@@ -1,12 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
-<<<<<<< HEAD
-from .forms import OrderForm
-import uuid
-=======
 from .forms import OrderForm, PhotoForm
->>>>>>> c34899ca9fad5e2c6cb9a49761b26fa5e3b65a7b
 
 
 def index(request):
